@@ -16,8 +16,6 @@ class BasicSimulation extends Simulation {
 
 before{
 println(s"Running Test With ${buildNumber} build number")
-println(s"Running Test With ${BUILD_NUMBER} build number")
-
 }
 
 
