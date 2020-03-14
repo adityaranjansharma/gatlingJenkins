@@ -12,7 +12,14 @@ class BasicSimulation extends Simulation {
       .getOrElse(defaultValue)
   }
 
-  def buildNumber: String = getProperty("BUILDNUMBER","$buildNumber").toString
+  def buildNumber: String = getProperty("BUILDNUM","${BUILD_NUMBER}").toString
+
+before{
+println(s"Running Test With ${buildNumber} build number")
+println(s"Running Test With ${BUILD_NUMBER} build number")
+
+}
+
 
 
   val httpProtocol = http
@@ -24,7 +31,7 @@ class BasicSimulation extends Simulation {
 
   val scn = scenario("Scenario Name") // A scenario is a chain of requests and pauses
     .forever(){
-      exec(http("request_1")
+      exec(http(buildNumber + "_request_1")
         .get("/"))
         .pause(7) // Note that Gatling has recorder real time pauses
     }
