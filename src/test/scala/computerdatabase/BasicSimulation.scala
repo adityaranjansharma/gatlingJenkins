@@ -14,7 +14,7 @@ class BasicSimulation extends Simulation {
 
   def postfixedBuildNumber: String = getProperty("BUILDNUM","${BUILD_NUMBER}").toString
 
-  var buildNumber = postfixedBuildNumber.replace('=',' ')
+  var buildNumber = postfixedBuildNumber.replace('=','')
   
 before{
 println(s"Running Test With ${buildNumber} build number")
