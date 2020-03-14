@@ -12,9 +12,8 @@ class BasicSimulation extends Simulation {
       .getOrElse(defaultValue)
   }
 
-  def postfixedBuildNumber: String = getProperty("BUILDNUM","${BUILD_NUMBER}").toString
+  def buildNumber: String = getProperty("BUILDNUM","${BUILD_NUMBER}").toString.dropRight(1)
 
-  var buildNumber = postfixedBuildNumber.replace('=','')
   
 before{
 println(s"Running Test With ${buildNumber} build number")
