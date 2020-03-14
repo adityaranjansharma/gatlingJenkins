@@ -12,8 +12,10 @@ class BasicSimulation extends Simulation {
       .getOrElse(defaultValue)
   }
 
-  def buildNumber: String = getProperty("BUILDNUM","${BUILD_NUMBER}").toString
+  def postfixedBuildNumber: String = getProperty("BUILDNUM","${BUILD_NUMBER}").toString
 
+  var buildNumber = postfixedBuildNumber.replace('=',' ')
+  
 before{
 println(s"Running Test With ${buildNumber} build number")
 }
@@ -29,7 +31,7 @@ println(s"Running Test With ${buildNumber} build number")
 
   val scn = scenario("Scenario Name") // A scenario is a chain of requests and pauses
     .forever(){
-      exec(http(buildNumber + "_request_1")
+      exec(http("Test" + buildNumber + "_request_1")
         .get("/"))
         .pause(7) // Note that Gatling has recorder real time pauses
     }
